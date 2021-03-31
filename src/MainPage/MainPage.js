@@ -5,7 +5,7 @@ export const innaFunkcja = () => {
   function MainPage() {
     return (
       <div>
-        Top talkers    
+       
       </div>
     );
   }
