@@ -1,0 +1,17 @@
+.container {
+  border: 5px solid black;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  margin-top: 15px;
+  font-size: 25px;
+}
+
+/* slaba nazwa klasy imho xd*/
+.upload {
+  margin-top: 300px;
+}
