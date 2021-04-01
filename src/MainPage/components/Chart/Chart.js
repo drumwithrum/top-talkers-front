@@ -9,7 +9,7 @@ import {
     ResponsiveContainer,
   } from "recharts";
 
-const chart = (props) => {
+const Chart = (props) => {
 
 return (
 
@@ -37,4 +37,4 @@ return (
 
 )
         }
-export default chart
+export default Chart

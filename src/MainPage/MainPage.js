@@ -9,11 +9,10 @@ export const MainPage = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [packetStats, setPacketStats] = useState([]);
   const [topTalkers, setTopTalkers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-
-
- const changeHandler = (event) => {
+ const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
@@ -21,7 +20,7 @@ export const MainPage = () => {
     event.preventDefault();
     setTopTalkers([]);
     setPacketStats([]);
-    setErrorMessage([]);
+    setErrorMessage('');
     const formData = new FormData();
     formData.append("data", selectedFile);
     const config = {
@@ -30,6 +29,7 @@ export const MainPage = () => {
       },
     };
     try {
+      setIsLoading(true)
       const response = await axios.post(
         "http://127.0.0.1:8000/files",
         formData,
@@ -37,31 +37,36 @@ export const MainPage = () => {
       );
 
       setPacketStats(response.data.packetStats);
-      setTopTalkers(response.data.topTalkers);  
-
+      setTopTalkers(response.data.topTalkers.sort((a, b) => b.load - a.load).slice(0, 50));
+      setIsLoading(false)
     } catch (error) {
-      setErrorMessage(error.response.data);
+      setIsLoading(false)
     }
   }, [selectedFile]);
 
 
   return (
     <div className="container">
+      <div className="form-wrapper">
+        <UploadForm
+          onSubmit={processFile}
+          onFileChange={onFileChange}
+          error={'error'}
+          fileName={selectedFile && selectedFile.name}
+          isLoading={isLoading}
+        />
+      </div>
       <div className="header">
       Top talkers and packet histogram in pcap
       </div>
-      <UploadForm processFile={processFile} changeHandler={changeHandler}/>
-       
-    
-       {topTalkers.sort((a,b) => (b.load - a.load)).slice(0, 50).map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
+       {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
        {errorMessage || null}
      
 
       <Chart data = {packetStats.map((packetStat) => ({
-            name: `${packetStat.size} ${packetStat.unit}`,
-            amount: packetStat.amount,
-          }))}/>
-
+        name: `${packetStat.size} ${packetStat.unit}`,
+        amount: packetStat.amount,
+      }))}/>
     </div>
   );
 }
