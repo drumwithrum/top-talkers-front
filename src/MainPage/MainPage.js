@@ -9,7 +9,7 @@ export const MainPage = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [packetStats, setPacketStats] = useState([]);
   const [topTalkers, setTopTalkers] = useState([]);
- // const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -18,7 +18,10 @@ export const MainPage = () => {
   };
 
  const processFile = useCallback(async (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    setTopTalkers([]);
+    setPacketStats([]);
+    setErrorMessage([]);
     const formData = new FormData();
     formData.append("data", selectedFile);
     const config = {
@@ -32,18 +35,15 @@ export const MainPage = () => {
         formData,
         config
       );
+
       setPacketStats(response.data.packetStats);
-      setTopTalkers(response.data.topTalkers);
-      
-      console.log(packetStats);
-      console.log(response);
-      
+      setTopTalkers(response.data.topTalkers);  
+
     } catch (error) {
-      alert(error.response.data);
+      setErrorMessage(error.response.data);
     }
   }, [selectedFile]);
 
- 
 
   return (
     <div className="container">
@@ -51,8 +51,12 @@ export const MainPage = () => {
       Top talkers and packet histogram in pcap
       </div>
       <UploadForm processFile={processFile} changeHandler={changeHandler}/>
-       {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
+       
     
+       {topTalkers.sort((a,b) => (b.load - a.load)).slice(0, 50).map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
+       {errorMessage || null}
+     
+
       <Chart data = {packetStats.map((packetStat) => ({
             name: `${packetStat.size} ${packetStat.unit}`,
             amount: packetStat.amount,

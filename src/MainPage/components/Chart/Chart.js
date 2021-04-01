@@ -31,7 +31,7 @@ return (
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="amount" fill="#53c653" name="Amount of packets" minPointSize={5} />
+          <Bar dataKey="amount" fill="#0F9D58" name="Amount of packets" minPointSize={5} />
         </BarChart>
       </ResponsiveContainer>
 
