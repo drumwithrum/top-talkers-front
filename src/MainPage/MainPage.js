@@ -1,28 +1,24 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
-import Button from './components/Button';
+import Chart from './components/Chart';
+import UploadForm from './components/UploadForm';
 import "./MainPage.style.css";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
 
-const MainPage = () => {
+
+export const MainPage = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [packetStats, setPacketStats] = useState([]);
   const [topTalkers, setTopTalkers] = useState([]);
+ // const [errorMessage, setErrorMessage] = useState('');
 
-  const changeHandler = (event) => {
+
+
+ const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const processFile = useCallback(async () => {
+ const processFile = useCallback(async (event) => {
+    event.preventDefault()
     const formData = new FormData();
     formData.append("data", selectedFile);
     const config = {
@@ -38,51 +34,30 @@ const MainPage = () => {
       );
       setPacketStats(response.data.packetStats);
       setTopTalkers(response.data.topTalkers);
+      
+      console.log(packetStats);
+      console.log(response);
+      
     } catch (error) {
-      //przydaloby sie cos wyswietlic jakby sie wywalilo 
-      console.log(error);
+      alert(error.response.data);
     }
   }, [selectedFile]);
+
+ 
 
   return (
     <div className="container">
       <div className="header">
-        Top talkers i histogram pakietów w pliku pcap
+      Top talkers and packet histogram in pcap
       </div>
-      {/* opakowałbym to w <form> + przeniósł do komponentu UploadForm na przykład */}
-      <div className="upload">
-        <div className="button">
-          <Button title="Submit" onClick={processFile} />
-        </div>
-        <input type="file" name="data" onChange={changeHandler} />
-      </div>
-
-      {/* {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>{topTalker.ip}{topTalker.load}</p>)} */}
-
-      {/* Na to osobny komponent w komponentach o nazwie np Chart albo Graph, gdzie po prostu przekazesz data */}
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart
-          width={500}
-          height={400}
-          data={packetStats.map((packetStat) => ({
+      <UploadForm processFile={processFile} changeHandler={changeHandler}/>
+       {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
+    
+      <Chart data = {packetStats.map((packetStat) => ({
             name: `${packetStat.size} ${packetStat.unit}`,
             amount: packetStat.amount,
-          }))}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="amount" fill="#53c653" name="Amount of packets" minPointSize={5} />
-        </BarChart>
-      </ResponsiveContainer>
+          }))}/>
+
     </div>
   );
 }
