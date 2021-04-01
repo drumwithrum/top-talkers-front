@@ -12,11 +12,16 @@ export const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
- const onFileChange = (event) => {
+  const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
- const processFile = useCallback(async (event) => {
+  const mapPackets = (packet) => ({
+    name: `${packet.size} ${packet.unit}`,
+    amount: packet.amount,
+  })
+
+  const processFile = useCallback(async (event) => {
     event.preventDefault();
     setTopTalkers([]);
     setPacketStats([]);
@@ -41,6 +46,7 @@ export const MainPage = () => {
       setIsLoading(false)
     } catch (error) {
       setIsLoading(false)
+      setErrorMessage(error.response.data);
     }
   }, [selectedFile]);
 
@@ -51,22 +57,16 @@ export const MainPage = () => {
         <UploadForm
           onSubmit={processFile}
           onFileChange={onFileChange}
-          error={'error'}
+          error={errorMessage}
           fileName={selectedFile && selectedFile.name}
           isLoading={isLoading}
         />
       </div>
       <div className="header">
-      Top talkers and packet histogram in pcap
+        Top talkers and packet histogram in pcap
       </div>
-       {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
-       {errorMessage || null}
-     
-
-      <Chart data = {packetStats.map((packetStat) => ({
-        name: `${packetStat.size} ${packetStat.unit}`,
-        amount: packetStat.amount,
-      }))}/>
+        {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
+        <Chart data={packetStats.map(mapPackets)} />
     </div>
   );
 }

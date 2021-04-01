@@ -25,7 +25,7 @@ return (
       </div>
       <form className="upload-form__form" onSubmit={onSubmit}>
         <div className="file-input__wrapper">
-          <input className="file-input" type="file" name="data" onChange={onFileChange} size="100" />
+          <input className="file-input" type="file" name="data" onChange={onFileChange} />
           {fileName && <p className="file-input__label">{fileName}</p>}
         </div>
         <Button title="Save" disabled={!fileName} isLoading={isLoading} />

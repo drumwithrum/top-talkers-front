@@ -5,12 +5,12 @@ const Button = ({ title, children, isLoading = false, variant, disabled = false,
   return (
     <button
       className={`button button--${variant || 'primary'} ${disabled ? 'button--disabled' : '' } ${isLoading ? 'button--loading' : '' }`}
-      onClick={!(disabled || isLoading) && onClick}
+      onClick={!(disabled || isLoading) ? onClick : undefined}
     >
       {isLoading ? <Loader /> : (title || children)}
     </button>
   );
 }
-  
+
 export default Button;
   
