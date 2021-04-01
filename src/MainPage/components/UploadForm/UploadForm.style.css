@@ -98,8 +98,10 @@
   content: "Select File";
   display: inline-block;
   outline: none;
+  letter-spacing: 0.5px;
   white-space: nowrap;
   cursor: pointer;
+  font-size: 14px;
   border-radius: 4px;
   padding: 10px 20px;
   width: 140px;
