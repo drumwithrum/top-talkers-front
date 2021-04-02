@@ -13,6 +13,8 @@ export const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const toPdfRef = useRef();
+  const currentDate = new Date().toLocaleDateString
+
 
   const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -22,6 +24,8 @@ export const MainPage = () => {
     name: `${packet.size} ${packet.unit}`,
     amount: packet.amount,
   })
+
+ 
 
   const processFile = useCallback(async (event) => {
     event.preventDefault();
@@ -64,10 +68,11 @@ export const MainPage = () => {
           isLoading={isLoading}
         />
       </div>
-
+    
       <div className="to-print-wrapper">
         <ReactToPrint
-          trigger={() => <button>Print this out!</button>}
+        
+          trigger={() => <button className="button-to-print">Print report</button>}
           content={() => toPdfRef.current}
         />
         <div ref={toPdfRef}>

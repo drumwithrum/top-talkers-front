@@ -1,17 +1,19 @@
 .list-item__wrapper {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   display: flex;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  font-size: 16px;
 }
 
 .list-item__wrapper td {
   flex-grow: 1;
   text-align: left;
   padding-left: 10px;
+  margin: 2px;
 }
 
 .list-item__wrapper td:last-child {
