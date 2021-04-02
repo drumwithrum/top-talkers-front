@@ -4,6 +4,7 @@ import Chart from './components/Chart';
 import UploadForm from './components/UploadForm';
 import ReactToPrint from 'react-to-print';
 import List from './components/List';
+import Button from './components/Button';
 import "./MainPage.style.css";
 
 export const MainPage = () => {
@@ -68,14 +69,12 @@ export const MainPage = () => {
           isLoading={isLoading}
         />
       </div>
-    
       <div className="to-print-wrapper">
         <ReactToPrint
-        
-          trigger={() => <button className="button-to-print">Print report</button>}
+          trigger={() => <Button className="print-button">Print report</Button>}
           content={() => toPdfRef.current}
         />
-        <div ref={toPdfRef}>
+        <div ref={toPdfRef} className="print-page">
           <div className="list-wrapper"> 
             <List data={topTalkers}/>
           </div>

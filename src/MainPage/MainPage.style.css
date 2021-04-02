@@ -21,11 +21,12 @@
 }
 
 .list-wrapper {
-  width: 1000px;
+  width: 100%;
   margin-bottom: 50px;
 }
 
 .to-print-wrapper {
+  width: 1000px;
   width: fit-content;
   border-radius: 8px;
   display: flex;
@@ -41,20 +42,22 @@
 .to-print-wrapper > div {
   background-color: white;
   padding: 10px;
+  border-radius: 10px;
 }
 
-.button-to-print {
+.print-button {
   background-color: #0f9d58;
-  padding: 10px 10px 10px 10px;
-  border-radius: 4px;
   margin-bottom: 15px;
-  margin-left: 850px;
-  text-transform: uppercase;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  padding: 10px 20px;
-  line-height: 12px;
+  align-self: flex-end;
+}
+
+.print-page {
+  width: 100%;
+  background-color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.print-button:hover {
+  background-color: #1faa67;
 }
