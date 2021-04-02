@@ -1,7 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import axios from "axios";
 import Chart from './components/Chart';
 import UploadForm from './components/UploadForm';
+import ReactToPrint from 'react-to-print';
 import "./MainPage.style.css";
 
 
@@ -11,6 +12,7 @@ export const MainPage = () => {
   const [topTalkers, setTopTalkers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const toPdfRef = useRef();
 
   const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -65,8 +67,14 @@ export const MainPage = () => {
       <div className="header">
         Top talkers and packet histogram in pcap
       </div>
+      <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => toPdfRef.current}
+      />
+      <div ref={toPdfRef}>
         {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
-        <Chart data={packetStats.map(mapPackets)} />
+        <Chart width={1000} data={packetStats.map(mapPackets)} />
+      </div>
     </div>
   );
 }
