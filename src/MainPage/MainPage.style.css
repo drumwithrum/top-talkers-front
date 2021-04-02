@@ -2,13 +2,13 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  background-image: url("../images/tile.png");
+  background-repeat: repeat;
 }
 
 .form-wrapper {
   width: 100%;
   height: 100vh;
-  background-image: url("../images/tile.png");
-  background-repeat: repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,4 +18,19 @@
 .header {
   margin-top: 15px;
   font-size: 25px;
+}
+
+.list-wrapper {
+  width: 1000px;
+  margin-bottom: 50px;
+}
+
+.to-print-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.to-print-wrapper > div {
+  background-color: white;
 }

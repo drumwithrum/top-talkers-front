@@ -3,8 +3,8 @@ import axios from "axios";
 import Chart from './components/Chart';
 import UploadForm from './components/UploadForm';
 import ReactToPrint from 'react-to-print';
+import List from './components/List';
 import "./MainPage.style.css";
-
 
 export const MainPage = () => {
   const [selectedFile, setSelectedFile] = useState();
@@ -64,16 +64,18 @@ export const MainPage = () => {
           isLoading={isLoading}
         />
       </div>
-      <div className="header">
-        Top talkers and packet histogram in pcap
-      </div>
-      <ReactToPrint
-        trigger={() => <button>Print this out!</button>}
-        content={() => toPdfRef.current}
-      />
-      <div ref={toPdfRef}>
-        {topTalkers.map(topTalker => <p key={`${topTalker.ip}`}>IP address: {topTalker.ip} ----- size: {topTalker.load}</p>)}
-        <Chart width={1000} data={packetStats.map(mapPackets)} />
+
+      <div className="to-print-wrapper">
+        <ReactToPrint
+          trigger={() => <button>Print this out!</button>}
+          content={() => toPdfRef.current}
+        />
+        <div ref={toPdfRef}>
+          <div className="list-wrapper"> 
+            <List data={topTalkers}/>
+          </div>
+          <Chart width={1000} data={packetStats.map(mapPackets)} />
+        </div>
       </div>
     </div>
   );

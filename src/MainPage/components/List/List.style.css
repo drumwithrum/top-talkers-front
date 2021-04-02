@@ -1,0 +1,22 @@
+.list__wrapper {
+  width: 100%;
+}
+
+.list__header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.list__header th {
+  flex-grow: 1;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.list__header th:last-child {
+  flex-basis: 200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
