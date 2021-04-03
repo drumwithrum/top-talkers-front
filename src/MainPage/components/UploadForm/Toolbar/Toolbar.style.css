@@ -18,6 +18,13 @@
 
 .yellow {
   background-color: #f4b400;
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.yellow:hover {
+  background-color: #ffec1c;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px 0px #ffec1c;
 }
 
 .green {

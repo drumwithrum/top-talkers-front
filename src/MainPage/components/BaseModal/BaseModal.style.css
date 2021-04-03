@@ -1,0 +1,12 @@
+.modal-layout {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: rgba(13, 38, 78, 0.534);
+}

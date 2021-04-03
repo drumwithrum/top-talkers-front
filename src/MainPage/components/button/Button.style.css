@@ -40,3 +40,13 @@
   background-color: #1567f6;
   transition: all 0.3s linear;
 }
+
+.button--confirm {
+  background-color: #0f9d58;
+  color: #fff;
+  transition: all 0.3s linear;
+}
+
+.button--confirm:hover {
+  background-color: #1faa67;
+}
