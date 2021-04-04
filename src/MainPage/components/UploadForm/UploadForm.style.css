@@ -95,7 +95,7 @@
   visibility: hidden;
 }
 .file-input::before {
-  content: "Select File";
+  content: 'Select File';
   display: inline-block;
   outline: none;
   letter-spacing: 0.5px;
@@ -115,4 +115,17 @@
   background-color: #f4b400;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.info-modal__title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.info-modal__subtitle {
+  padding-left: 10px;
+  margin-bottom: 2px;
 }

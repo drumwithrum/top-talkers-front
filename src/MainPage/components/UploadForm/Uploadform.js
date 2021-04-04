@@ -23,7 +23,13 @@ const UploadForm = ({
     <div className="upload-form">
       <div className="upload-form__header">
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          Autor tego modala to kox
+          <div className="info-modal__title">
+            <b>Made with 💖 by</b>
+          </div>
+          <div className="info-modal__subtitle">Wojciech Bębenek 👨‍💻</div>
+          <div className="info-modal__subtitle">Nikodem Wojewodzic</div>
+          <div className="info-modal__subtitle">Karol Mularczyk</div>
+          <div className="info-modal__subtitle">Mikołaj Bochenek</div>
         </Modal>
         <Toolbar onInfoClick={() => setIsModalOpen(true)} />
         <h1 className="title">Top Talkers</h1>

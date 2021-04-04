@@ -61,3 +61,7 @@
 .print-button:hover {
   background-color: #1faa67;
 }
+
+.spacing-bottom-big {
+  padding-bottom: 60px;
+}

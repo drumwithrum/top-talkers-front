@@ -75,17 +75,23 @@ export const MainPage = () => {
           isLoading={isLoading}
         />
       </div>
-      <div className="to-print-wrapper">
-        <ReactToPrint
-          trigger={() => <Button className="print-button">Print report</Button>}
-          content={() => toPdfRef.current}
-        />
-        <div ref={toPdfRef} className="print-page">
-          <div className="list-wrapper">
-            <List data={topTalkers} />
+      <div className="spacing-bottom-big">
+        {packetStats.length && (
+          <div className="to-print-wrapper">
+            <ReactToPrint
+              trigger={() => (
+                <Button className="print-button">Print report</Button>
+              )}
+              content={() => toPdfRef.current}
+            />
+            <div ref={toPdfRef} className="print-page">
+              <div className="list-wrapper">
+                <List data={topTalkers} />
+              </div>
+              <Chart width={1000} data={packetStats.map(mapPackets)} />
+            </div>
           </div>
-          <Chart width={1000} data={packetStats.map(mapPackets)} />
-        </div>
+        )}
       </div>
     </div>
   );
