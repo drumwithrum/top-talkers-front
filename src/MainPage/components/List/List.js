@@ -5,13 +5,15 @@ const List = ({ data }) => {
 
 return (
   <table className="list__wrapper" cellPadding={0} cellSpacing={0}>
-    <tr className="list__header">
-      <th>IP Address</th>
-      <th>Load [kB]</th>
-    </tr>
-    {data.map(item => (
-      <ListItem data={item} />
-    ))}   
+    <tbody>
+      <tr className="list__header">
+        <th>IP Address</th>
+        <th>Load [kB]</th>
+      </tr>
+      {data.map(item => (
+        <ListItem data={item} key={`top-talkers-list-item-${item.ip}`} />
+      ))}   
+    </tbody>
 
   </table>
 
