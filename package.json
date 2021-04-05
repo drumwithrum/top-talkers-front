@@ -13,6 +13,7 @@
     "react-scripts": "4.0.3",
     "react-to-print": "^2.12.3",
     "recharts": "^2.0.9",
+    "scroll-to-element": "^2.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

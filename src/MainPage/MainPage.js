@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import scroll from 'scroll-to-element';
 import Chart from './components/Chart';
 import UploadForm from './components/UploadForm';
 import ReactToPrint from 'react-to-print';
@@ -51,6 +52,7 @@ export const MainPage = () => {
           response.data.topTalkers.sort((a, b) => b.load - a.load).slice(0, 50)
         );
         setCurrentDate(moment());
+        scroll('#to-print-wrapper');
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -78,7 +80,7 @@ export const MainPage = () => {
       </div>
       {packetStats.length ? (
         <div className="spacing-bottom-big">
-          <div className="to-print-wrapper">
+          <div id="to-print-wrapper" className="to-print-wrapper">
             <ReactToPrint
               trigger={() => (
                 <Button className="print-button">Print report</Button>
