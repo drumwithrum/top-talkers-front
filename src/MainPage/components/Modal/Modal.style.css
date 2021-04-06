@@ -1,0 +1,22 @@
+.modal-wrapper {
+  background-color: #4285f4;
+  padding: 12px 12px 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  background-color: #ffffff;
+  padding: 8px;
+  width: 300px;
+  min-height: 150px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.modal-footer {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-end;
+}

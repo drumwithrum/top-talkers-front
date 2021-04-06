@@ -1,0 +1,17 @@
+.error-message-wrapper {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 4px 0px 4px;
+  transition: all 0.3s linear;
+}
+
+.error-msg--collapsed {
+  height: 0px;
+}
+
+.error-msg__title {
+  font-size: 12px;
+  line-height: 12px;
+  color: #db4437;
+}

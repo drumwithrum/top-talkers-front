@@ -1,0 +1,52 @@
+.button {
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 12px;
+  border: none;
+  height: 36px;
+  min-width: 100px;
+  outline: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.button--primary {
+  background-color: #4285f4;
+  color: #fff;
+  transition: all 0.3s linear;
+}
+
+.button--primary:hover {
+  background-color: #1567f6;
+}
+
+.button--disabled {
+  background-color: #aaa;
+  color: #fff;
+  pointer-events: none;
+  cursor: initial;
+  transition: all 0.3s linear;
+}
+
+.button--loading {
+  pointer-events: none;
+  cursor: initial;
+  background-color: #1567f6;
+  transition: all 0.3s linear;
+}
+
+.button--confirm {
+  background-color: #0f9d58;
+  color: #fff;
+  transition: all 0.3s linear;
+}
+
+.button--confirm:hover {
+  background-color: #1faa67;
+}
